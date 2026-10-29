@@ -15,38 +15,42 @@ robots.txt        tells search engines they may crawl the site
 sitemap.xml       lists the page for Google
 ```
 
-## Before you publish: set your site address
+## Domain
 
-The SEO tags need the site's real address. In VS Code press **Ctrl+Shift+H** (Find and Replace in all files), search for
-
-```
-YOUR-GITHUB-USERNAME
-```
-
-and replace it with your GitHub username. This updates `index.html`, `robots.txt` and `sitemap.xml` in one go.
+The site is set up for **https://muhammadmuneeb.site/**. The `CNAME` file tells GitHub Pages to serve it on that domain, and all SEO tags, `robots.txt` and `sitemap.xml` already use this address.
 
 ## Run it locally
 
 Open `index.html` in a browser, or in VS Code install the **Live Server** extension, right-click `index.html` and choose **Open with Live Server**.
 
-## Publish on GitHub Pages
+## Publish on GitHub Pages with muhammadmuneeb.site
 
-1. Create a new repository on GitHub, for example `muneeb-portfolio`.
-2. In this folder run:
+1. Push this folder to the `portfolio` repository:
 
 ```bash
 git init
 git add .
 git commit -m "Portfolio site"
 git branch -M main
-git remote add origin https://github.com/<your-username>/muneeb-portfolio.git
+git remote add origin https://github.com/<your-username>/portfolio.git
 git push -u origin main
 ```
 
-3. On GitHub open the repository, go to **Settings > Pages**, set **Source** to *Deploy from a branch*, choose `main` and `/ (root)`, and save.
-4. After a minute the site is live at `https://<your-username>.github.io/muneeb-portfolio/`.
+2. On GitHub open the repository, go to **Settings > Pages**, set **Source** to *Deploy from a branch*, choose `main` and `/ (root)`, and save. Under **Custom domain** it should show `muhammadmuneeb.site` (from the `CNAME` file). If not, type it and save.
 
-Tip: name the repository `<your-username>.github.io` and the site will live at `https://<your-username>.github.io/` instead.
+3. At your domain registrar (where you bought muhammadmuneeb.site), open the DNS settings and add:
+
+| Type  | Name / Host | Value                     |
+|-------|-------------|---------------------------|
+| A     | @           | 185.199.108.153           |
+| A     | @           | 185.199.109.153           |
+| A     | @           | 185.199.110.153           |
+| A     | @           | 185.199.111.153           |
+| CNAME | www         | <your-username>.github.io |
+
+Delete any other A record or "parking" record on `@`.
+
+4. DNS can take from a few minutes up to 24 hours. When GitHub's Pages settings say the DNS check is successful, tick **Enforce HTTPS**.
 
 ## Editing
 
